@@ -1,0 +1,19 @@
+apiVersion: api.techsre.io/v1alpha1
+kind: HPAReplicaSchedule
+metadata:
+  name: ppbl-pg-acquiring-biz-service
+  namespace: prod
+spec:
+  hpaName: ppbl-pg-acquiring-biz-service
+  namespace: prod
+  schedules:
+  - daysOfWeek: Mon-Fri
+    hour: 17
+    maxReplicas: 12
+    minReplicas: 4
+    minute: 19
+  - daysOfWeek: Mon-Tue
+    hour: 17
+    maxReplicas: 10
+    minReplicas: 1
+    minute: 20

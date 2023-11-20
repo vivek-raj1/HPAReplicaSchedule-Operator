@@ -1,0 +1,18 @@
+{{- if .Values.HPAReplicaSchedule.enabled -}}
+apiVersion: api.techsre.io/v1alpha1
+kind: HPAReplicaSchedule
+metadata:
+  name: {{ .Values.HPAReplicaSchedule.hpaName }}
+  namespace: {{ .Values.HPAReplicaSchedule.namespace }}
+spec:
+  namespace: {{ .Values.HPAReplicaSchedule.namespace }}
+  hpaName: {{ .Values.HPAReplicaSchedule.hpaName }}
+  schedules:
+{{- range .Values.HPAReplicaSchedule.schedules }}
+    - daysOfWeek: {{ .daysOfWeek }}
+      hour: {{ .hour }}
+      minute: {{ .minute }}
+      minReplicas: {{ .minReplicas }}
+      maxReplicas: {{ .maxReplicas }}
+{{- end }}
+{{- end }}
